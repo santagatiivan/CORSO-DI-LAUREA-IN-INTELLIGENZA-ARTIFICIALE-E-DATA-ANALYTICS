@@ -1,0 +1,43 @@
+\documentclass{article}
+
+\usepackage{graphicx} % Necessario per inserire immagini
+\usepackage[backend=biber,style=numeric]{biblatex} % Gestione della bibliografia
+\addbibresource{bibliography.bib} % File di bibliografia
+\usepackage{tex/comandi} % Carica il pacchetto personalizzato dalla sottocartella tex
+\usepackage{amsmath} % Per le formule matematiche avanzate
+\usepackage[colorlinks=true, linkcolor=blue, urlcolor=blue]{hyperref} % Collegamenti per l'indice
+\usepackage{multicol} % Serve per dividere le tabelle in molteplici colonne
+\usepackage{geometry}
+\geometry{a4paper, margin=1in} % Impostazioni dei margini
+\usepackage[table,xcdraw]{xcolor}
+
+\title{\textbf{Appunti di analisi matematica I}}
+\author{Ivan Santagati  \\ 
+\vspace{2em}
+\textit{Docente: Daniele Del Santo} \\
+\textit{Dipartimento di Matematica, Informatica e Geoscienze}}
+\date{September 2024}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}% Assicura che la pagina di titolo non abbia numerazione
+
+\begin{figure}[b]% Inserimento dell'immagine in fondo alla pagina
+    \centering
+    \includegraphics[width=0.3\textwidth]{img/units_sigillo.png} % Inserisce l'immagine centrata e ridimensionata
+\end{figure}
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\tableofcontents% Inserisce l'indice
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Inclusione dei file dei capitoli
+\include{chap_1} % prerequisiti
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
