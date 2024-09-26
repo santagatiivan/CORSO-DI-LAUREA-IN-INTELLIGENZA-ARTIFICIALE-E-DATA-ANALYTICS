@@ -1,10 +1,10 @@
 # Introduzione
 ### imperativo
 
-1)attendere arrivo
-2)aprire porta
-3)entrare
-...
+    1)attendere arrivo
+    2)aprire porta
+    3)entrare
+    ...
 
   
 ### imperativo
