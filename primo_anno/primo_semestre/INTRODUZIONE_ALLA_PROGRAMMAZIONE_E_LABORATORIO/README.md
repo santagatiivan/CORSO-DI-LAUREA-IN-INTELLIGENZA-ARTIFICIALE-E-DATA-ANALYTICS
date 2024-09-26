@@ -1,18 +1,26 @@
 # Introduzione
+### imperativo
 
-## imperativo
+1)attendere arrivo
+2)aprire porta
+3)entrare
+...
+
+  
+### imperativo
+diamo un ordine temporale (come una ricetta di cucina)
+
     1)attendere arrivo
     2)aprire porta
     3)entrare
     ...
+  
 
-    diamo un ordine temporale (come una ricetta di cucina)
+### dichiarativo
+ordini preceduti da condizioni (in base a una condizione fai un'azione)
 
-## dichiarativo
     1)se ascensore qui, e la porta è aperta
     2)sali
-
-    ordini preceduti da condizioni (in base a una condizione fai un'azione)
 
 ### Programma
 Descrizione eseguibile da un calcolatore di un metodo (algoritmo) per il calcolo di un risultato (output), a partire da un dato (input).
@@ -23,8 +31,11 @@ Descrizione eseguibile da un calcolatore di un metodo (algoritmo) per il calcolo
 ### Stato
 Insieme di variabili che definiscono il programma
 
+  
 
-f(m,n)=m*n
+## 25/9/2024
+##### esempio contadino russo
+f(m,n)=m*n 
 
     1)crea var. p con valore 0.
     2)se m è pari, allora salto al 5)
@@ -33,6 +44,7 @@ f(m,n)=m*n
     5)assegno m=m/2
     6)balzo al 2)
 
+  
 
 m=7, n=4
 
@@ -46,3 +58,27 @@ m=7, n=4
     8)n=16
     8)p=p+16
     10)stop
+
+  
+
+## 26/9/2024
+quando programmeremo in c dovremo definire il tipo di una variabile. come:
+
+- int -->numeri interi (1,2)
+
+- double, float --> numero con virgola mobile (1,53)
+
+- char --> lettera ('a', 'b')
+
+##### Memoria: 
+RAM: Random Access Memory
+Indichiamo gli indirizzi della memoria come l0,l1,l2...
+
+
+
+	int K=10000;	//km percoesi in un anno
+	float b=0,2;		//costo benzina al km
+	int c=20000;	//costo della macchina
+	float tot;		//costo totale
+		tot=b*K;
+		tot+=c;		//tot=tot+c
