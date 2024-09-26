@@ -62,6 +62,7 @@ m=7, n=4
   
 
 ## 26/9/2024
+##### variabili
 quando programmeremo in c dovremo definire il tipo di una variabile. come:
 
 - int -->numeri interi (1,2)
@@ -82,3 +83,34 @@ Indichiamo gli indirizzi della memoria come l0,l1,l2...
 	float tot;		//costo totale
 		tot=b*K;
 		tot+=c;		//tot=tot+c
+
+##### istruzione condizionale if
+    if(condizione){
+        comando1;
+    } else{
+        comando2;
+    }
+
+La condizione è un’espressione logica a cui si può associare valore “vero” o “falso”, mentre comando1 e comando2 sono due programmi.
+
+
+esempio di due if annidati:
+
+    if(condizione1){
+        if(condizione2){
+            comando;
+        }
+    }
+
+In questo esempio se ci troviamo dentro il secondo if, soddisfiamo la condizione di entrambi gli if.
+
+condizione1 $\land$ condizione2
+
+##### istruzione iterattiva while
+    while(condizione){
+        comando;
+    }
+
+
+
+
