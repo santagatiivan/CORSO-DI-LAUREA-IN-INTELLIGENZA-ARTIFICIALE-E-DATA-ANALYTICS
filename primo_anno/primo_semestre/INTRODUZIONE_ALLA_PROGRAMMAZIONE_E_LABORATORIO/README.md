@@ -32,3 +32,17 @@ f(m,n)=m*n
     4)se m è 1, STOP
     5)assegno m=m/2
     6)balzo al 2)
+
+
+m=7, n=4
+
+    1)n=4, m=7
+    2)p=0
+    3)p=p+4
+    4)m=3
+    5)n=8
+    6)p=p+8
+    7)m=1
+    8)n=16
+    8)p=p+16
+    10)stop
