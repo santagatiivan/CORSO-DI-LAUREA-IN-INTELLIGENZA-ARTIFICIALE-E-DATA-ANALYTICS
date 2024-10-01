@@ -104,7 +104,7 @@ esempio di due if annidati:
 
 In questo esempio se ci troviamo dentro il secondo if, soddisfiamo la condizione di entrambi gli if.
 
-condizione1 $\land$ condizione2
+condizione1 $\land$ condizione2 sono entrambe soddisfatte
 
 ##### istruzione iterattiva while
     while(condizione){
