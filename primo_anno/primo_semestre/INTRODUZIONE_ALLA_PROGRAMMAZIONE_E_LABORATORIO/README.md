@@ -34,7 +34,7 @@ Insieme di variabili che definiscono il programma
   
 
 ## 25/9/2024
-##### esempio contadino russo
+#### esempio contadino russo
 f(m,n)=m*n 
 
     1)crea var. p con valore 0.
@@ -62,7 +62,7 @@ m=7, n=4
   
 
 ## 26/9/2024
-##### variabili
+#### variabili
 quando programmeremo in c dovremo definire il tipo di una variabile. come:
 
 - int -->numeri interi (1,2)
@@ -71,7 +71,7 @@ quando programmeremo in c dovremo definire il tipo di una variabile. come:
 
 - char --> lettera ('a', 'b')
 
-##### Memoria: 
+#### Memoria: 
 RAM: Random Access Memory
 Indichiamo gli indirizzi della memoria come l0,l1,l2...
 
@@ -84,7 +84,7 @@ Indichiamo gli indirizzi della memoria come l0,l1,l2...
 		tot=b*K;
 		tot+=c;		//tot=tot+c
 
-##### istruzione condizionale if
+#### istruzione condizionale if
     if(condizione){
         comando1;
     } else{
@@ -104,13 +104,101 @@ esempio di due if annidati:
 
 In questo esempio se ci troviamo dentro il secondo if, soddisfiamo la condizione di entrambi gli if.
 
-condizione1 $\land$ condizione2
+condizione1 $\land$ condizione2 sono entrambe soddisfatte
 
-##### istruzione iterattiva while
+
+#### espressioni logiche 
+
+-   disuguaglianze: <, >, <=, >= (dove <= e >= stanno per ≤ e ≥, rispettiva-mente);
+
+-   uguaglianza: ==;
+
+-   diversità: != (che sta per $\neq$)
+
+-   congiunzione && (“and” logico, ∧ in algebra);
+
+-   disgiunzione || (“or” logico, ∨ in algebra);
+
+-   negazione ! (“not” logico, ¬ in algebra);
+
+## 1/10/2024
+#### istruzione iterattiva while
     while(condizione){
         comando;
     }
 
+
+## 2/10/2024
+#### istruzione iterattiva do-while
+Come l'istruzione while, ma vogliamo far per certo almeno una volta il comando
+
+    do{
+        comando;
+    }while(condizione)
+
+#### Istruzione iterativa for
+
+    for(comando1; espressione; comando2){
+        comando3;
+    }
+
+Il suo funzionamento consiste nelle seguenti computazioni:
+1. si esegue comando1 (chiamato inizializzazione);
+2. si valuta espressione (ovvero la condizione del for):
+    -   se espressione è falsa, l’esecuzione del for termina;
+
+    -   se espressione è vera: (i) si esegue comando3, il corpo del for, (ii) si esegue comando2 (chiamato aggiornamento) e (iii) si salta al punto 2.
+
+#### Blocchi di codice e pile di frame
+
+
+    { int x=7;
+        {
+            int z=5;
+            x=z+1;
+        }
+    }
+
+    -------------------------------------------------- POP   //chiudo il blocco
+    -------------------------------------------------- POP   //chiudo il blocco
+        ------------------       ------------------
+        |   z   |   l1   |       |   l1   |   5   |          //assegno a z il suo frame
+        ------------------       ------------------
+    -------------------------------------------------- PUSH  //apro nuovo blocco
+        ------------------       ------------------
+        |   x   |   l0   |       |   l0   |   7   |          //assegno x il suo frame
+        ------------------       ------------------
+    -------------------------------------------------- PUSH  //apro il blocco
+
+(qundo chiudo il blocco muoiono le variabili al suo )
+
+
+    {
+        int x=6;
+            {
+                int z=5;
+                int x=z+1;
+            }
+            x=x+1
+    }
+
+
+    -------------------------------------------------- POP   //chiudo il blocco
+        ------------------       ------------------
+        |   x   |   l3   |       |   l3   | x=x+1 |          //valore del x nel blocco nel quale si trova in quel momento
+        ------------------       ------------------
+    -------------------------------------------------- POP   //chiudo il blocco
+        ------------------       ------------------
+        |   x   |   l2   |       |   l2   | x=z+1 |          //x=5+1
+        ------------------       ------------------
+        ------------------       ------------------
+        |   z   |   l1   |       |   l1   |   5   |         //assegno a z il suo frame
+        ------------------       ------------------
+    --------------------------------------------------- PUSH
+        ------------------       ------------------
+        |   x   |    l0  |       |   l0   |   6   |         //assegno a x il suo frame
+        ------------------       ------------------
+    --------------------------------------------------- PUSH
 
 
 
