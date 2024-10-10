@@ -183,22 +183,26 @@ Il suo funzionamento consiste nelle seguenti computazioni:
     }
 
 
-    -------------------------------------------------- POP   //chiudo il blocco
+    -------------------------------------------------- PUSH // inizio del programma
         ------------------       ------------------
-        |   x   |   l3   |       |   l3   | x=x+1 |          //valore del x nel blocco nel quale si trova in quel momento
+        |   i   |  Global |       | Global |   0   |      // `i` inizializzato a 0, variabile globale
         ------------------       ------------------
-    -------------------------------------------------- POP   //chiudo il blocco
+    -------------------------------------------------- PUSH // chiama f(i) con i = 0
         ------------------       ------------------
-        |   x   |   l2   |       |   l2   | x=z+1 |          //x=5+1
+        |   x   |   l0   |       |   l0   |   0   |        // `x` inizializzato a `i = 0`
         ------------------       ------------------
+    -------------------------------------------------- POP   // inizio della chiamata f(i)
         ------------------       ------------------
-        |   z   |   l1   |       |   l1   |   5   |         //assegno a z il suo frame
+        |   x   |   l0   |       |   l0   |   0   |        // valore di `x` prima dell'incremento
         ------------------       ------------------
-    --------------------------------------------------- PUSH
+        |   x   |   l1   |       |   l1   |   0   |        // valore di `x` nel blocco della funzione
         ------------------       ------------------
-        |   x   |    l0  |       |   l0   |   6   |         //assegno a x il suo frame
+    -------------------------------------------------- PUSH // incremento di `x`
         ------------------       ------------------
-    --------------------------------------------------- PUSH
+        |   x   |   l1   |       |   l1   |   1   |        // `x` aggiornato a `0 + 1`
+        ------------------       ------------------
+
+
 
 
 
