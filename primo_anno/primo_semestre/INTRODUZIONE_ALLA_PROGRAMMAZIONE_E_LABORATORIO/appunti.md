@@ -205,4 +205,140 @@ Il suo funzionamento consiste nelle seguenti computazioni:
 
 
 
+## 29/10/2024
+#### puntatori
+
+Prendiamo come esempio queste funzioni:
+
+    int f(int x, int y){
+        while(x!y){
+            if(x<y){
+                scambia(x,y);
+                x=x-y;
+            }
+        }
+        return (x);
+    }
+
+    void scambia(int x, int y){
+        int an = y;
+        x = y;
+        y = an;
+    }
+
+Disegnando la memoria per f(3,7) notiamo che i valori non vengono scambiati.
+
+        ------------------       ------------------
+        |   an  |   l4   |       |   l4   |   3   |                         //BLOCCO CHIUSO       
+        ------------------       ------------------
+    --------------------------------------------------
+        ------------------       ------------------
+        |   y   |   l3   |       |   l3   |   7   |     3        
+        ------------------       ------------------                         //BLOCCO CHIUSO 
+        |   x   |   l2   |       |   l2   |   3   |     7     
+        ------------------       ------------------
+    --------------------------------------------------      scambia(3,7)   //BLOCCO CHIUSO 
+    --------------------------------------------------      if(3<7)
+    --------------------------------------------------      while(3!=7)
+        ------------------       ------------------
+        |   y   |   l1   |       |   l0   |   7   |        
+        ------------------       ------------------
+        |   x   |   l0   |       |   l1   |   3   |     -4      
+        ------------------       ------------------
+    --------------------------------------------------      f(3,7)
+
+
+Come definiamo un puntatore?
+
+    int x = 10;
+    p = &x;     //& va a vedere nella memoria di x
+
+Proviamo a disegnare la tabella per questo esempio
+
+        ------------------       ------------------
+        |   p   |   l1   |       |   l0   |   l0  |        
+        ------------------       ------------------
+        |   x   |   l0   |       |   l1   |   10  |        
+        ------------------       ------------------
+
+
+
+Ora rivediamo l'esempio iniziale con i puntatori:
+
+    int f(int x, int y){
+        while(x!y){
+            if(x<y){
+                scambia(&x, &y);
+                x=x-y;
+            }
+        }
+        return (x);
+    }
+
+    void scambia(int *x, int *y){
+        int ausiliario = *x;
+        *x = *y;
+        *y = ausiliario;
+    }
+
+Disegnando la tabella sempre con f(3,7) possiamo notare che i valori iniziali scambiano il valore perché lo facciamo nel loro slot di memoria.
+
+        ------------------       ------------------
+        |   an  |   l4   |       |   l4   |   3   |                         //BLOCCO CHIUSO       
+        ------------------       ------------------
+    --------------------------------------------------
+        ------------------       ------------------
+        |   *y  |   l3   |       |   l3   |   l1   |    l0        
+        ------------------       ------------------                         //BLOCCO CHIUSO 
+        |   *x  |   l2   |       |   l2   |   l0   |    l1     
+        ------------------       ------------------
+    --------------------------------------------------      scambia(3,7)   //BLOCCO CHIUSO 
+    --------------------------------------------------      if(3<7)
+    --------------------------------------------------      while(3!=7)
+        ------------------       ------------------
+        |   y   |   l1   |       |   l0   |   7   |     3        
+        ------------------       ------------------
+        |   x   |   l0   |       |   l1   |   3   |     7       4      
+        ------------------       ------------------
+    --------------------------------------------------      f(3,7)
+
+Il passaggio di parametri in C avviene per valore, anche con i puntatori (perché con essi il valore è copiato). I puntatori esistono in tutti i linguaggi di programmazione.
+
+
+##### esercizi
+
+Disegna la tabella per il seguente codice
+
+    int x = 10;
+    int y = 20;
+    int *p = &x;
+    int *q = &y;
+
+        ------------------       ------------------
+        |   q   |   l3   |       |   l3   |   l1  |        
+        ------------------       ------------------
+        |   p   |   l2   |       |   l2   |   l0  |        
+        ------------------       ------------------
+        |   y   |   l1   |       |   l1   |   20  |        
+        ------------------       ------------------
+        |   x   |   l0   |       |   l0   |   10  |     21      21      
+        ------------------       ------------------
+
+
+Si vuole definire una funzione "sp" che dati x e y, calcoli x+y e x*y
+
+    void sp(int *x, int *y){
+        int ausiliario = *x
+        *x = *x * *y;
+        *y = ausiliario + *y;
+    }
+
+
+
+
+
+
+
+
+
 
