@@ -330,8 +330,48 @@ Si vuole definire una funzione "sp" che dati x e y, calcoli x+y e x*y
     void sp(int *x, int *y){
         int ausiliario = *x
         *x = *x * *y;
-        *y = ausiliario + *y;
+        *y
+         = ausiliario + *y;
     }
+
+## 6/11/2024
+
+#### array (vettore)
+
+    [0, 1, 2]
+
+come lo dichiariamo?
+
+    int a[10] //10 sta per la grandezza del array (numero di elementi che contiene)
+
+per scrivere nel primo indice scrivo:
+
+    a[0]=6;
+
+Esempio:
+
+    int a[3];
+    a[0]=1;
+    a[1]=2;
+    a[2]=3;
+
+Non si può fare:
+
+    int x;
+    scanf ("%d", &x);
+
+    int a[x];
+
+lo facciamo così:
+
+    int a[10];
+    for (int i=0; i<10; i++){
+        a[i]=i;
+    }
+
+
+
+
 
 
 
