@@ -1,3 +1,4 @@
+// DA RIVEDERE!!!
 #include <stdio.h>
 
 int f(int p, int s){
