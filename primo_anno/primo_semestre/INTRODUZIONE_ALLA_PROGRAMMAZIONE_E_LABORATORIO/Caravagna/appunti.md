@@ -151,6 +151,7 @@ Il suo funzionamento consiste nelle seguenti computazioni:
 
 #### Blocchi di codice e pile di frame
 
+Si chiama memoria Stack
 
     { int x=7;
         {
@@ -369,16 +370,65 @@ lo facciamo così:
         a[i]=i;
     }
 
+## 12/11/2024
+## 13/11/2024
+
+#### Memoria dinamica (HEAP)
+
+Memoria dinamica, vul dire che si utilizza puntatori
+Non sempre esiste
+
+        ------------------      
+        |   h0   |   v0  |            
+        ------------------      
+
+a sinistra la locazione mentre sulla destra il valore
+
+Esempio:
+
+    int *a = (int *) malloc(sizeof(int));
+
+malloc=memory allocation
+
+1.   int *a dichiara a come puntatore a un numero intero (int).
+2.   (int *) converte il risultato di malloc in un puntatore a int.
+3.   malloc(sizeof(int)) alloca abbastanza memoria per contenere un singolo numero intero.
+4.   Ora, a punta a un blocco di memoria che può contenere un int.    
 
 
+    int x=10;
+    int *p;
+    p=(int *)malloc(sizeof(int));
+    x*= c+1;
 
 
+                    
+        ------------------       ------------------                     |                  |
+        |   p   |   l1   |       |   l1   |   h0  |                     |------------------|
+        ------------------       ------------------                     |   h0   |   11    |
+        |   x   |   l0   |       |   l0   |   10  |                     |------------------|
+        ------------------       ------------------                     |                  |
+
+---------------------------------------------------------------------------------------------------------
+
+    int x = 10;
+    int *p;
+    {
+        int y = 12;
+        p=(int *)malloc(sizeof(int));
+        *p = y+1;
+    }
 
 
-
-
-
-
+        ------------------       ------------------                    
+        |   y   |   l2   |       |   l2   |   12  | //poi lo cancello      
+        ------------------       ------------------
+    -------------------------------------------------- 
+        ------------------       ------------------                     |                  |
+        |   p   |   l1   |       |   l1   |   h0  |                     |------------------|
+        ------------------       ------------------                     |   h0   |  12+1   |
+        |   x   |   l0   |       |   l0   |   13  |                     |------------------|
+        ------------------       ------------------                     |                  |
 
 
 
