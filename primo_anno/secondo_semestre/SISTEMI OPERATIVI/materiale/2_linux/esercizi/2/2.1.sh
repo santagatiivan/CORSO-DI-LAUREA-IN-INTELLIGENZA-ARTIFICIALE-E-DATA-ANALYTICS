@@ -1,0 +1,2 @@
+cd /etc
+cat hosts
