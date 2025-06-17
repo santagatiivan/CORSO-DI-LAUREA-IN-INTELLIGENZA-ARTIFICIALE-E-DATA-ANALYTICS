@@ -1,0 +1,107 @@
+#' ---
+#' title: "Homework 3 - Data Analytics"
+#' author: "Ivan Santagati"
+#' output: html_document
+#' ---
+
+# Esercizio 1:
+#
+# Si considerino i dati disponibili qui
+# https://instruction.bus.wisc.edu/jfrees/jfreesbooks/regression%20modeling/bookwebdec2010/CSVData/UNLifeExpectancy.csv
+# La descrizione delle variabili è in
+# https://instruction.bus.wisc.edu/jfrees/jfreesbooks/regression%20modeling/bookwebdec2010/DataDescriptions.pdf 
+# al capitolo National Life Expectancies.
+
+# Si tratta di dati sull’aspettativa di vita in vari paesi: si vuole cercare di individuare paesi con profili simili. Si svolga un’analisi di raggruppamento usando una delle tecniche presentate nel corso.
+# Valutate: - eventuale pulizia dei dati - l’uso di opportune trasformazioni - fornite misure della qualità dei cluster ottenuti
+
+# Caricamento e pulizia nomi colonne
+dati <- read.csv("UNLifeExpectancy.csv")
+colnames(dati) <- trimws(colnames(dati))
+
+# Selezione dati numerici e rimozione NA
+dati_num <- dati[ , sapply(dati, is.numeric)]
+dati_num <- na.omit(dati_num)
+
+# Standardizzazione
+dati_scalati <- scale(dati_num)
+
+# Metodo del gomito
+wss <- numeric(10)
+for (k in 1:10) {
+  kmeans_temp <- kmeans(dati_scalati, centers = k, nstart = 10)
+  wss[k] <- sum(kmeans_temp$withinss)
+}
+
+# Grafico del gomito
+library(ggplot2)
+df_gomito <- data.frame(k = 1:10, wss = wss)
+
+ggplot(df_gomito, aes(x = k, y = wss)) +
+  geom_line() +
+  geom_point() +
+  labs(title = "Metodo del gomito", x = "Numero di cluster", y = "WSS")
+
+# K-means con 3 cluster
+set.seed(123)
+kmeans_finale <- kmeans(dati_scalati, centers = 3, nstart = 25)
+
+# PCA e visualizzazione
+pca <- prcomp(dati_scalati)
+pca_df <- as.data.frame(pca$x[, 1:2])
+pca_df$Cluster <- factor(kmeans_finale$cluster)
+
+ggplot(pca_df, aes(x = PC1, y = PC2, color = Cluster)) +
+  geom_point(size = 2) +
+  labs(title = "Visualizzazione dei cluster tramite PCA")
+
+# Distribuzione cluster
+table(kmeans_finale$cluster)
+
+
+
+# Esercizio 2:
+#
+# Il dataset earnings.csv è disponibile su moodle e deriva da una ricerca “WORK, FAMILY, AND WELL-BEING IN THE UNITED STATES, 1990”.
+# Il dataset allegato è la versione utilizzata nel libro “Regression and other stories” di Gelman et al. (https://users.aalto.fi/~ave/ROS.pdf). I nomi di colonna sono esplicativi del contenuto delle variabili. Inoltre potete fare riferimento al codebook del dataset originale (wfwcodebook.txt) e allo script utilizzato nel libro per creare il dataset (earnings_setup.R).
+# Costruite un modello di regressione multipla ove il guadagno è la variabile risposta.
+# Ponete attenzione: - alla eventuale pulizia dei dati - alla possibilità di utilizzare trasformazioni - alla qualità e parsimonia del modello finale
+
+# Caricamento dati
+dati <- read.csv("earnings.csv")
+
+# Struttura e NA
+str(dati)
+colSums(is.na(dati))
+
+# Rimozione NA
+dati_puliti <- na.omit(dati)
+
+# Rimozione guadagni nulli/negativi
+dati_puliti <- dati_puliti[dati_puliti$earn > 0, ]
+
+# Istogramma
+hist(dati_puliti$earn, main = "Distribuzione dei guadagni", xlab = "Earnings")
+
+# Log-transform
+dati_puliti$log_earn <- log(dati_puliti$earn)
+
+# Modello iniziale
+modello_iniziale <- lm(log_earn ~ age + education + height + weight + male, data = dati_puliti)
+
+# Riepilogo
+summary(modello_iniziale)
+
+# Stepwise
+modello_finale <- step(modello_iniziale, direction = "both")
+
+# Riepilogo finale
+summary(modello_finale)
+
+# Diagnostica
+par(mfrow = c(2,2))
+plot(modello_finale)
+
+     
+
+
